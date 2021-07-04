@@ -26,6 +26,6 @@ class StudentEditView(View):
 
     def get(self,request,id):
         student = Student.objects.get(id=id)
-        #print(student.sex)
+        #print(student.course_enrolled['Course'])
         form = StudentForm(instance=student)
         return render(request,'data/edit_student.html',{'form':form})
