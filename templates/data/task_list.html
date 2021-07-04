@@ -1,0 +1,52 @@
+{% extends 'data/main.html' %}
+
+                            {% load static %}
+                            
+                                {% block content %}
+                            <div class="col-lg-6">
+                                <div class="content-page">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="page-title mb-2">
+                                                Task List
+                                            </div>
+                                            <div class="table-responsive">
+                                                <table class="table table-striped custom-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="min-width:91px;">Task</th>
+                                                            <th style="min-width:50px;">Description</th>
+                                                            <th class="text-right" style="width:30%;">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for i in tasks %}
+                                                        <tr>
+                                                            <th>{{i.title}}</th>
+                                                            <td>{{i.description}}</td>
+                                                            <td class="text-right">
+                                                                <a href="edit-exam.html" class="btn btn-primary btn-sm mb-1">
+                                                                    <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                                                                </a>
+                                                                <button type="submit" data-toggle="modal"
+                                                                    data-target="#delete_employee"
+                                                                    class="btn btn-danger btn-sm mb-1">
+                                                                    <i class="fas fa-trash" aria-hidden="true"></i>
+                                                                </button>
+                                                            </td>
+                                                            {% empty %}
+                                                            <td colspan="3">No pending tasks</td>
+                                                        </tr>
+                                                        {% endfor %}
+                                        
+                                                            
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {% endblock %}
+                        

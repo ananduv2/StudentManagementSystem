@@ -1,0 +1,55 @@
+{% extends 'data/main.html' %}
+
+{% load static %}
+
+    {% block content %}
+<div class="col-lg-6">
+    <div class="content-page">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title mb-2">
+                    Current-Batch-List
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped custom-table">
+                        <thead>
+                            <tr>
+                                <th style="min-width:91px;">Subject</th>
+                                <th style="min-width:50px;">Timing</th>
+                                <th style="min-width:50px;">Section</th>
+                                <th style="min-width:50px;">Start Date</th>
+                                <th style="min-width:50px;">End Date</th>
+                                <th class="text-right" style="width:30%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in batch %}
+                            <tr>
+                                <td>{{i.subject}}</td>
+                                <td>{{i.timings}}</td>
+                                <td>{{i.batch_type}}</td>
+                                <td>{{i.start_date}}</td>
+                                <td>{{i.end_date}}</td>
+                                <td class="text-right">
+                                    <a href="edit-exam.html" class="btn btn-primary btn-sm mb-1">
+                                        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                                    </a>
+                                    <button type="submit" data-toggle="modal"
+                                        data-target="#delete_employee"
+                                        class="btn btn-danger btn-sm mb-1">
+                                        <i class="fas fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+            
+                                
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
