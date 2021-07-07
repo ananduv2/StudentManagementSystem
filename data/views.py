@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views import View
+from django.urls import reverse_lazy
 
 
 
@@ -24,8 +25,29 @@ class TrainerView(View):
 
 class StudentEditView(View):
 
-    def get(self,request,id):
+    def post(self,request,id):
         student = Student.objects.get(id=id)
-        #print(student.course_enrolled['Course'])
+        form = StudentForm(request.POST,instance=student)
+        print (form)
+        if form.is_valid():
+            form.save()
+            return redirect('students')  
+        return HttpResponse("updation failed")
+
+    def get(self,request,id):
+        #print("Hello")
+        student = Student.objects.get(id=id)
+        #c=[]
+        #n=[]
+        #for i in student.course_enrolled.all():
+            #c.append(i)
+        #for i in student.now_attending.all():
+            #n.append(i)
         form = StudentForm(instance=student)
+        #form.fields['course_enrolled'].initial=c
         return render(request,'data/edit_student.html',{'form':form})
+
+    
+
+
+    

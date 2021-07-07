@@ -37,9 +37,10 @@
                    <div class="card-body">
                       <div class="row">
                          <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                            <form class="custom-mt-form">
+                            <form class="custom-mt-form" method="post" action>
+                              {% csrf_token %}
                                <div class="form-group custom-mt-form-group">
-                                  {{ form.name }}
+                                  {{form.name}}
                                   <label class="control-label">Firstname</label><i class="bar"></i>
                                </div>
                                <div class="form-group custom-mt-form-group">
@@ -55,59 +56,58 @@
                                   <label class="control-label">Gender</label><i class="bar"></i>
                                </div>
                                <div class="form-group custom-mt-form-group">
-                                  <input class="datetimepicker" value="18/04/1998" type="text">
+                                  <!-- <input type="text" value="{{c|join:', ' }}" /> -->
+                                     {{form.course_enrolled}}
                                   <label class="control-label">Courses Enrolled</label><i class="bar"></i>
                                </div>
                                <div class="form-group custom-mt-form-group">
-                                  <input type="text" value="1" />
-                                  <label class="control-label">Class</label><i class="bar"></i>
+                                 <!-- <input type="text" value="{{n|join:', ' }}" /> -->
+                                 {{form.now_attending}}
+                                  <label class="control-label">Now Attending</label><i class="bar"></i>
                                </div>
                                <div class="form-group custom-mt-form-group">
-                                  <input type="text" value="Hindu" />
-                                  <label class="control-label">Religion</label><i class="bar"></i>
+                                 {{form.start_date}}
+                                  <label class="control-label">Start Date</label><i class="bar"></i>
                                </div>
-                            </form>
                          </div>
                          <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                            <form class="custom-mt-form">
                               <div class="form-group custom-mt-form-group">
-                                 {{form.email}}
-                                 <label class="control-label">Email</label><i class="bar"></i>
+                                 {{form.payment}}
+                                 <label class="control-label">Payement</label><i class="bar"></i>
                               </div>
                                <div class="form-group custom-mt-form-group">
-                                  <input class="form-control floating datetimepicker" value="12/05/2018" type="text">
-                                  <label class="control-label">Joining Date</label><i class="bar"></i>
+                                 {{form.shared}}
+                                  <label class="control-label">Resource Shared</label><i class="bar"></i>
                                </div>
                                <div class="form-group custom-mt-form-group">
-                                  <input type="password" />
-                                  <label class="control-label">Comfirm Password</label><i class="bar"></i>
+                                 {{form.house}}
+                                  <label class="control-label">House No/Building No</label><i class="bar"></i>
                                </div>
                                <div class="form-group custom-mt-form-group">
-                                  <input type="number" value="9853467121" />
-                                  <label class="control-label">Mobile number</label><i class="bar"></i>
+                                  {{form.street}}
+                                  <label class="control-label">Addrress Line 1</label><i class="bar"></i>
                                </div>
                                <div class="form-group custom-mt-form-group">
-                                  <input type="text" value="1234" />
-                                  <label class="control-label">Admission No</label><i class="bar"></i>
+                                  {{form.street2}}
+                                  <label class="control-label">Addrress Line 2</label><i class="bar"></i>
                                </div>
                                <div class="form-group custom-mt-form-group">
-                                  <input type="text" value="FD-00d1" />
-                                  <label class="control-label">ID</label><i class="bar"></i>
+                                  {{form.city}}
+                                  <label class="control-label">City</label><i class="bar"></i>
                                </div>
                                <div class="form-group custom-mt-form-group">
-                                  <input type="text" value="A" />
-                                  <label class="control-label">Section</label><i class="bar"></i>
+                                  {{form.state}}
+                                  <label class="control-label">State</label><i class="bar"></i>
                                </div>
-                            </form>
                          </div>
-                         <div class="page-title w-100">
+                         <!-- <div class="page-title w-100">
                             <div class="row">
                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                                   <div class="page-title pl-3">Parent information</div>
                                </div>
                             </div>
-                         </div>
-                         <div class="card-body w-100 parent-form">
+                         </div> -->
+                         <!-- <div class="card-body w-100 parent-form">
                             <div class="row">
                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                                   <form class="custom-mt-form">
@@ -149,7 +149,7 @@
                                      </div>
                                   </form>
                                </div>
-                            </div>
+                            </div> 
                          </div>
                          <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                             <form class="custom-mt-form">
@@ -166,12 +166,11 @@
                                   <label class="control-label">Parents Image</label><i class="bar"></i>
                                </div>
                             </form>
-                         </div>
+                         </div>-->
                          <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                            <form class="custom-mt-form">
                                <div class="form-group text-center custom-mt-form-group">
                                   <button class="btn btn-primary mr-2" type="submit">Submit</button>
-                                  <button class="btn btn-secondary" type="reset">Cancel</button>
+                                  <a class="btn btn-secondary" href="{% url 'students' %}">Cancel</a>
                                </div>
                             </form>
                          </div>

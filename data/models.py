@@ -84,12 +84,13 @@ class Student(models.Model):
     sex = models.CharField(max_length=10,null=True,choices=(('Male','Male'),('Female','Female')))
     house = models.CharField(max_length=100,null=True)
     street =models.CharField(max_length=100,null=True)
+    street2 =models.CharField(max_length=100,null=True)
     city = models.CharField(max_length=100,null=True)
     state = models.CharField(max_length=100,null=True,choices=state)
     course_enrolled = models.ManyToManyField(Course,related_name='course_enrolled')
     now_attending = models.ManyToManyField(Batch,related_name='now_attending')
     start_date = models.DateField(null=True)
-    shared = models.BooleanField(default=False)
+    shared = models.BooleanField(default=False,choices=((True, 'Yes'), (False, 'No')))
     payment = models.CharField(max_length=10,choices=(('Full','Full'),('Half','Half')),default='Half')
 
     def __str__(self):
