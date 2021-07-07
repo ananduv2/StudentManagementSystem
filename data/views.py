@@ -1,10 +1,12 @@
 from django.shortcuts import render,redirect
 from django.views import View
 from django.urls import reverse_lazy
+from django.http import HttpResponse
+from django.db.models import Q
 
 
 
-from .models import Student,Batch,TrainerTask,Trainer
+from .models import Student,Batch,TrainerTask,Trainer,StudentCourseData
 from .forms import StudentForm
 
 # Create your views here.
@@ -15,7 +17,7 @@ class TrainerView(View):
         trainer =Trainer.objects.get(name=request.user)
         students=Student.objects.all()
         student_count=students.count()
-        batch=Batch.objects.all()
+        batch=Batch.objects.filter(~Q(status="Completed"))
         batch_count=batch.count()
         user=request.user
         task=TrainerTask.objects.filter(user=trainer,complete=False)
@@ -34,17 +36,16 @@ class StudentEditView(View):
         return HttpResponse("updation failed")
 
     def get(self,request,id):
-        #print("Hello")
         student = Student.objects.get(id=id)
-        #c=[]
-        #n=[]
-        #for i in student.course_enrolled.all():
-            #c.append(i)
-        #for i in student.now_attending.all():
-            #n.append(i)
+        course_data = StudentCourseData.objects.filter(student=student)
+        course_enrolled=[]
+        now_attending=[]
+        for i in course_data:
+            course_enrolled.append(i.batch.subject)
+            if i.batch.status == "Ongoing":
+                now_attending.append(i.batch.subject)
         form = StudentForm(instance=student)
-        #form.fields['course_enrolled'].initial=c
-        return render(request,'data/edit_student.html',{'form':form})
+        return render(request,'data/edit_student.html',{'form':form,'course_data':course_data,'now_attending':now_attending,'course_enrolled':course_enrolled})
 
 class StudentDeleteView(View):
     def post(self,request,id):

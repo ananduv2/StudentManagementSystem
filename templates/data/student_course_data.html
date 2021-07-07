@@ -1,0 +1,52 @@
+{% extends 'data/edit_student.html' %}
+
+{% load static %}
+
+    {% block content %}
+
+
+        <div class="row mt-2">
+            <div class="col-lg-12">
+                <div class="content-page">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-title mb-2">
+                                Course Data Sheet
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped custom-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width:50px;">Subject</th>
+                                            <th style="min-width:74px;">Batch</th>
+                                            <th style="min-width:50px;">Status</th>
+                                            <th class="text-right">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in course_data %}
+                                        <tr>
+                                            <td>{{i.batch.subject}}</td>
+                                            <td>{{i.batch.start_date}}&nbsp;{{i.batch.timings}}</td>
+                                            <td>{{i.batch.status}}</td>
+                                            <td class="text-right">
+                                                <a href="" class="btn btn-primary btn-sm mb-1">
+                                                    <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                                                </a>
+                                                <a href=""class="btn btn-danger btn-sm mb-1">
+                                                    <i class="fas fa-trash" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {% empty %}
+                                            <h3>No data available</h3>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}

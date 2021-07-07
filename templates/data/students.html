@@ -22,6 +22,7 @@
                                             <th style="min-width:50px;">Course Enrolled</th>
                                             <th style="min-width:50px;">Now Attending</th>
                                             <th style="min-width:98px;">Start Date</th>
+                                            <th style="min-width:90px;">Shared</th>
                                             <th style="min-width:90px;">Payement</th>
                                             <th class="text-right">Action</th>
                                         </tr>
@@ -34,9 +35,10 @@
                                                 <h2><a href="profile.html">{{student.name}} <span></span></a></h2>
                                             </td>
                                             <td>{{student.email}}</td>
-                                            <td>{{student.course_enrolled.all|join:", " }}</td>
-                                            <td>{{student.now_attending.all|join:", " }}</td>
+                                            <td>{{course_enrolled|join:', ' }}</td>
+                                            <td>{{now_attending|join:', ' }}</td>
                                             <td>{{student.start_date}}</td>
+                                            <td>{{student.shared}}</td>
                                             <td>{{student.payment}}</td>
                                             <td class="text-right">
                                                 <a href="{% url 'student_edit' student.id %}" class="btn btn-primary btn-sm mb-1">

@@ -42,7 +42,7 @@ class Batch(models.Model):
     start_date = models.DateField(null=True)
     timings = models.CharField(max_length=100,null=True)
     end_date = models.DateField(null=True)
-    complete = models.BooleanField(default=False) 
+    status = models.CharField(max_length=100,choices=(('Yet to start','Yet to start'),('Ongoing','Ongoing'),('Completed','Completed')),null=True)
 
     def __str__(self):
         return "%s %s %s" % (self.subject, self.start_date.strftime('%d/%m/%Y'), self.timings)
@@ -95,6 +95,16 @@ class Student(models.Model):
 
     def __str__(self):
         return self.name
+
+class StudentCourseData(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE,related_name='student')
+    batch = models.ForeignKey(Batch, on_delete=models.CASCADE,related_name='batch')
+    
+
+    def __str__(self):
+        s=" 's "
+        return "%s %s %s" % (self.student,s, self.batch)
+
 
 
 

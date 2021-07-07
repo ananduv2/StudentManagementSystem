@@ -56,13 +56,11 @@
                                   <label class="control-label">Gender</label><i class="bar"></i>
                                </div>
                                <div class="form-group custom-mt-form-group">
-                                  <!-- <input type="text" value="{{c|join:', ' }}" /> -->
-                                     {{form.course_enrolled}}
+                             <input type="text"   value="{{course_enrolled|join:', ' }}">
                                   <label class="control-label">Courses Enrolled</label><i class="bar"></i>
                                </div>
                                <div class="form-group custom-mt-form-group">
-                                 <!-- <input type="text" value="{{n|join:', ' }}" /> -->
-                                 {{form.now_attending}}
+                                 <input type="text" value="{{now_attending|join:', ' }}">
                                   <label class="control-label">Now Attending</label><i class="bar"></i>
                                </div>
                                <div class="form-group custom-mt-form-group">
@@ -168,11 +166,13 @@
                             </form>
                          </div>-->
                          <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                           
                                <div class="form-group text-center custom-mt-form-group">
                                   <button class="btn btn-primary mr-2" type="submit">Submit</button>
                                   <a class="btn btn-secondary" href="{% url 'students' %}">Cancel</a>
                                </div>
-                            </form>
+                           </form>
+                           {% include 'data/student_course_data.html' %}
                          </div>
                       </div>
                    </div>
