@@ -35,8 +35,8 @@
                                                 <h2><a href="profile.html">{{student.name}} <span></span></a></h2>
                                             </td>
                                             <td>{{student.email}}</td>
-                                            <td>{{course_enrolled|join:', ' }}</td>
-                                            <td>{{now_attending|join:', ' }}</td>
+                                            <td>{{student.course_enrolled|join:", " }}</td>
+                                            <td>{{student.now_attending|join:", " }}</td>
                                             <td>{{student.start_date}}</td>
                                             <td>{{student.shared}}</td>
                                             <td>{{student.payment}}</td>

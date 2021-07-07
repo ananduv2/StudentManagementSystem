@@ -87,8 +87,8 @@ class Student(models.Model):
     street2 =models.CharField(max_length=100,null=True)
     city = models.CharField(max_length=100,null=True)
     state = models.CharField(max_length=100,null=True,choices=state)
-    course_enrolled = models.ManyToManyField(Course,related_name='course_enrolled')
-    now_attending = models.ManyToManyField(Batch,related_name='now_attending')
+    course_enrolled = models.CharField(max_length=100,null=True)
+    now_attending = models.CharField(max_length=100,null=True)
     start_date = models.DateField(null=True)
     shared = models.BooleanField(default=False,choices=((True, 'Yes'), (False, 'No')))
     payment = models.CharField(max_length=10,choices=(('Full','Full'),('Half','Half')),default='Half')
@@ -100,7 +100,6 @@ class StudentCourseData(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE,related_name='student')
     batch = models.ForeignKey(Batch, on_delete=models.CASCADE,related_name='batch')
     
-
     def __str__(self):
         s=" 's "
         return "%s %s %s" % (self.student,s, self.batch)

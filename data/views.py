@@ -16,6 +16,16 @@ class TrainerView(View):
     def get(self,request):
         trainer =Trainer.objects.get(name=request.user)
         students=Student.objects.all()
+        for i in students:
+            course_data = StudentCourseData.objects.filter(student=i)
+            i.course_enrolled=[]
+            i.now_attending=[]
+            for j in course_data:
+                i.course_enrolled.append(j.batch.subject)
+                if j.batch.status == "Ongoing":
+                    i.now_attending.append(j.batch.subject)
+            print(type(i.now_attending))
+            i.save()
         student_count=students.count()
         batch=Batch.objects.filter(~Q(status="Completed"))
         batch_count=batch.count()
