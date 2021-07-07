@@ -28,7 +28,6 @@ class StudentEditView(View):
     def post(self,request,id):
         student = Student.objects.get(id=id)
         form = StudentForm(request.POST,instance=student)
-        print (form)
         if form.is_valid():
             form.save()
             return redirect('students')  
@@ -46,6 +45,20 @@ class StudentEditView(View):
         form = StudentForm(instance=student)
         #form.fields['course_enrolled'].initial=c
         return render(request,'data/edit_student.html',{'form':form})
+
+class StudentDeleteView(View):
+    def post(self,request,id):
+        student = Student.objects.get(id=id)
+        student.delete()
+        return redirect('students')
+
+    def get(self,request,id):
+        student = Student.objects.get(id=id)
+        form = StudentForm(instance=student)
+        return render(request,'data/confirm_deletion_student.html',{'form':form})
+        
+
+
 
     
 

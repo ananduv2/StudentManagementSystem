@@ -23,4 +23,5 @@ urlpatterns = [
 
     path('student_list/',TrainerView.as_view(),name='students'),
     path('student/<str:id>/',StudentEditView.as_view(),name='student_edit'),
+    path('student/delete/<str:id>/',StudentDeleteView.as_view(),name='student_delete'),
 ]
