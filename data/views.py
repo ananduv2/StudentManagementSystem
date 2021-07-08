@@ -7,7 +7,7 @@ from django.db.models import Q
 
 
 from .models import Student,Batch,TrainerTask,Trainer,StudentCourseData
-from .forms import StudentForm
+from .forms import StudentForm,CourseBatchForm
 
 # Create your views here.
 
@@ -24,7 +24,6 @@ class TrainerView(View):
                 i.course_enrolled.append(j.batch.subject)
                 if j.batch.status == "Ongoing":
                     i.now_attending.append(j.batch.subject)
-            print(type(i.now_attending))
             i.save()
         student_count=students.count()
         batch=Batch.objects.filter(~Q(status="Completed"))
@@ -55,7 +54,7 @@ class StudentEditView(View):
             if i.batch.status == "Ongoing":
                 now_attending.append(i.batch.subject)
         form = StudentForm(instance=student)
-        return render(request,'data/edit_student.html',{'form':form,'course_data':course_data,'now_attending':now_attending,'course_enrolled':course_enrolled})
+        return render(request,'data/edit_student.html',{'form':form,'course_data':course_data,'now_attending':now_attending,'course_enrolled':course_enrolled,'student':student})
 
 class StudentDeleteView(View):
     def post(self,request,id):
@@ -67,6 +66,35 @@ class StudentDeleteView(View):
         student = Student.objects.get(id=id)
         form = StudentForm(instance=student)
         return render(request,'data/confirm_deletion_student.html',{'form':form})
+
+class AddCourseBatch(View):
+
+    def get(self,request,id):
+        student = Student.objects.get(id=id)
+        form =CourseBatchForm(initial={'student':student})
+        return render(request,'data/add_course_data.html',{'form':form})
+
+    def post(self,request,id):
+        form =CourseBatchForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Done")
+        return redirect('students')
+
+class DeleteCourseBatch(View):
+
+    def post(self,request,id):
+        batch = StudentCourseData.objects.get(id=id)
+        batch.delete()
+        return redirect('students')
+
+    def get(self,request,id):
+        batch = StudentCourseData.objects.get(id=id)
+        msg = "Do you wish to delete?"
+        return render(request,'data/confirmation_msg.html',{'msg':msg})
+
+
+
         
 
 

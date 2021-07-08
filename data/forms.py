@@ -7,3 +7,9 @@ class StudentForm(ModelForm):
         model = Student
         fields ='__all__'
         exclude=('course_enrolled','now_attending',)
+
+class CourseBatchForm(ModelForm):
+    class Meta:
+        model = StudentCourseData
+        fields = '__all__'
+        

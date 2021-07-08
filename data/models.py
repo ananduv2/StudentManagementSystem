@@ -97,7 +97,7 @@ class Student(models.Model):
         return self.name
 
 class StudentCourseData(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE,related_name='student')
+    student = models.ForeignKey(Student, on_delete=models.CASCADE,related_name='student',null=True)
     batch = models.ForeignKey(Batch, on_delete=models.CASCADE,related_name='batch')
     
     def __str__(self):
