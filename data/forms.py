@@ -13,3 +13,7 @@ class CourseBatchForm(ModelForm):
         model = StudentCourseData
         fields = '__all__'
         
+class TaskForm(ModelForm):
+    class Meta:
+        model = TrainerTask
+        fields = ['title','description','complete']

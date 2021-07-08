@@ -7,7 +7,7 @@ from django.db.models import Q
 
 
 from .models import Student,Batch,TrainerTask,Trainer,StudentCourseData
-from .forms import StudentForm,CourseBatchForm
+from .forms import StudentForm,CourseBatchForm,TaskForm
 
 # Create your views here.
 
@@ -78,7 +78,7 @@ class AddCourseBatch(View):
         form =CourseBatchForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse("Done")
+            return redirect('students')
         return redirect('students')
 
 class DeleteCourseBatch(View):
@@ -92,6 +92,22 @@ class DeleteCourseBatch(View):
         batch = StudentCourseData.objects.get(id=id)
         msg = "Do you wish to delete?"
         return render(request,'data/confirmation_msg.html',{'msg':msg})
+
+
+class TaskUpdate(View):
+
+    def get(self,request,id):
+        task = TrainerTask.objects.get(id=id)
+        form  = TaskForm(instance=task)
+        return render(request,'data/task_view.html',{'form':form})
+
+    def post(self,request,id):
+        task = TrainerTask.objects.get(id=id)
+        form =TaskForm(request.POST,instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('students')
+        return redirect('students')
 
 
 

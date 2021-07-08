@@ -1,0 +1,54 @@
+{% extends 'data/main.html' %}
+
+{% load static %}
+
+    {% block content %}
+    <div class="main-wrapper">
+    
+        {% include 'data/topbar.html' %}
+    
+        {% include 'data/sidebar.html' %}
+<div class="page-wrapper"> <!-- content -->
+    <div class="content container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                <h5 class="text-uppercase">Update Task</h5>
+            </div>
+            <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                <ul class="list-inline breadcrumb float-right">
+                    <li class="list-inline-item"><a href="{% url 'students' %}">Dashboard</a></li>
+                    <li class="list-inline-item">Update Task</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card-box">
+                    <h4 class="card-title">Task Information</h4><br>
+                    <form method ="post" action>
+                        {% csrf_token %}
+                        <div class="form-group custom-mt-form-group">
+                            {{form.title}}
+                            <label class="control-label">Title</label><i class="bar"></i>
+                        </div>
+                        <div class="form-group custom-mt-form-group">
+                            {{form.description}}
+                            <label class="control-label">Description</label><i class="bar"></i>
+                        </div>
+                        <div class="form-group custom-mt-form-group">
+                            {{form.complete}}
+                            <label class="control-label">Complete</label>
+                        </div>
+                        <div class="form-group text-center custom-mt-form-group">
+                            <button class="btn btn-primary mr-2" type="submit">Submit</button>
+                            <a class="btn btn-secondary" href="{% url 'students' %}">Cancel</a>
+                         </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}      

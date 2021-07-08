@@ -26,4 +26,5 @@ urlpatterns = [
     path('student/delete/<str:id>/',StudentDeleteView.as_view(),name='student_delete'),
     path('student/add_course_data/<str:id>/',AddCourseBatch.as_view(),name='add_course_data'),
     path('student/delete_course_data/<str:id>/',DeleteCourseBatch.as_view(),name='delete_course_data'),
+    path('task/edit/<str:id>/',TaskUpdate.as_view(),name='task_update'),
 ]
