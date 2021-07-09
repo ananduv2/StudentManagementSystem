@@ -5,8 +5,8 @@
     <div class="main-wrapper">
     
         {% include 'data/topbar.html' %}
-    
-        {% include 'data/sidebar.html' %}
+		{% include 'data/sidebar.html' %}
+        
         <div class="page-wrapper"> <!-- content -->
             <div class="content container-fluid">
                 <div class="page-header">
@@ -24,8 +24,7 @@
 					</div>
 				</div>
 				<div class="page-content">
-					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-12">
 							<div class="card">
 								<div class="page-title">
 									<div class="row">
@@ -37,11 +36,12 @@
 								</div>
 								<div class="card-body">	
 									<div class="row">
-										<div class="col-lg-6 col-md-6 col-sm-6 col-12">
-											 <form>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+											 <form method="post" action>
+												{% csrf_token %}
 												<div class="form-group custom-mt-form-group">
 													<input type="text"  />
-													<label class="control-label">Full Name</label><i class="bar"></i>
+													<label class="control-label">Username</label><i class="bar"></i>
 												</div>
 												<div class="form-group custom-mt-form-group">
 													<input type="text"  />
@@ -53,94 +53,19 @@
 												</div>
 												<div class="form-group custom-mt-form-group">
 													<input type="text"  />
-													<label class="control-label">Subject</label><i class="bar"></i>
-												</div>
-												<div class="form-group custom-mt-form-group">
-													<select >
-														<option>Male</option>
-														<option>Female</option>
-													 </select>
-													 <label class="control-label">Gender</label><i class="bar"></i>
-												</div>
-												<div class="form-group custom-mt-form-group">
-													 <input class="datetimepicker" type="text"> 
-													<label class="control-label">Birth Date</label><i class="bar"></i>
-												</div>
-												<div class="form-group custom-mt-form-group">
-													<input type="text"  />
-													<label class="control-label">Class</label><i class="bar"></i>
-												</div>
-											</form>
-										</div>
-										<div class="col-lg-6 col-md-6 col-sm-6 col-12">
-											<form>
-												<div class="form-group custom-mt-form-group">
-													<input type="text"  >
-													<label class="control-label">Alias</label><i class="bar"></i>
-												</div>
-												<div class="form-group custom-mt-form-group">
-													 <input class="form-control floating datetimepicker" type="text" >
-													<label class="control-label">Joining Date</label><i class="bar"></i>
-												</div>
-												<div class="form-group custom-mt-form-group">
-													<input type="password"  />
 													<label class="control-label">Confirm Password</label><i class="bar"></i>
 												</div>
-												<div class="form-group custom-mt-form-group">
-													<input type="number"  />
-													<label class="control-label">Mobile number</label><i class="bar"></i>
-												</div>
-												<div class="form-group custom-mt-form-group">
-													<select >
-														<option>Computer</option>
-														<option>Science</option>
-														<option>Maths</option>
-														<option>Tamil</option>
-														<option>English</option>
-														<option>Social Science</option>
-													 </select>
-													 <label class="control-label">Subject</label><i class="bar"></i>
-												</div>		
-												<div class="form-group custom-mt-form-group">
-													<input type="text"  />
-													<label class="control-label">ID</label><i class="bar"></i>
-												</div>
-												<div class="form-group custom-mt-form-group">
-													<input type="text"  />
-													<label class="control-label">Section</label><i class="bar"></i>
-												</div>
-																						
-											</form>
-										</div>
-										<div class="col-lg-12 col-md-12 col-sm-12 col-12">
-											<form>
-												<div class="form-group">
-													<textarea id="message" class="form__field" placeholder="Premanent Address" rows="4"></textarea>
-													<label for="message" class="form-label">Premanent Address</label>
-												</div>
-											</form>
-										</div>
-										<div class="col-lg-12 col-md-12 col-sm-12 col-12">
-											<form>
-												<div class="form-group custom-mt-form-group">
-													  <input type="file" name="pic" accept="image/*" style="margin-bottom:10px;">
-													<label class="control-label"></label><i class="bar"></i>
-												</div>
-											</form>
-										</div>
-										<div class="col-lg-12 col-md-12 col-sm-12 col-12">
-											<form>
 												<div class="form-group text-center custom-mt-form-group">
-													<button class="btn btn-primary mr-2" type="submit">Submit</button>
+													<button class="btn btn-primary mr-2" type="submit">Register</button>
 													<button class="btn btn-secondary" type="reset">Cancel</button>
 												</div>
+												
 											</form>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 				</div>
             </div>
             {% endblock %}

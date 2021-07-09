@@ -3,17 +3,19 @@ from django.views import View
 from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.db.models import Q
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import Group
 
 
 
 
 from .models import Student,Batch,TrainerTask,Trainer,StudentCourseData
-from .forms import StudentForm,CourseBatchForm,TaskForm,TrainerRegistersForm
+from .forms import StudentForm,CourseBatchForm,TaskForm,TrainerRegisterForm
 
 # Create your views here.
 class LoggingInView(View):
     def get(self,request):
-        form = TrainerRegistersForm()
+        form = TrainerRegisterForm()
         return render(request,'data/login.html',{'form':form})
 
     def post(self,request):
@@ -21,9 +23,17 @@ class LoggingInView(View):
 
 class RegisterTrainerView(View):
     def get(self,request):
-        form = TrainerRegistersForm()
+        form = TrainerRegisterForm()
         return render(request,'data/register.html',{'form':form})
 
+    def post(self,request):
+        form = TrainerRegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            group = Group.objects.get(name='trainer')
+            user.groups.add(group)
+            return redirect('login')
+        return HttpResponse("Register failed")
 class TrainerView(View):
     
     def get(self,request):

@@ -22,7 +22,7 @@ class TaskForm(ModelForm):
         fields = ['title','description','complete']
 
 
-class TrainerRegistersForm(UserCreationForm):
+class TrainerRegisterForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username','password1','password2','email','first_name','last_name']
+        fields = ['username','email','password1','password2']
