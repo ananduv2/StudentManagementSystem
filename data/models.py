@@ -14,7 +14,6 @@ class Course(models.Model):
 class Trainer(models.Model):
     name = models.CharField(max_length=100)
     mobile = models.CharField(max_length=10)
-    password = forms.CharField(max_length=32, widget=forms.PasswordInput)
 
     def __str__(self):
         return self.name
