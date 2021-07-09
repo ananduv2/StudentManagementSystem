@@ -6,16 +6,14 @@
             <ul>
                 <li class="menu-title">Main</li>
                 <li class="active">
-                    <a href="index.html"><i class="fas fa-tachometer-alt" aria-hidden="true"></i> Dashboard</a>
+                    <a href="{% url 'students' %}"><i class="fas fa-tachometer-alt" aria-hidden="true"></i> Dashboard</a>
                 </li>
                 <li class="">
-                    <a href="#"><i class="fas fa-user" aria-hidden="true"></i> <span> Teachers</span> <span
+                    <a href="#"><i class="fas fa-user" aria-hidden="true"></i> <span> Trainers</span> <span
                             class="menu-arrow"></span></a>
                     <ul class="list-unstyled" style="display: none;">
-                        <li><a href="all-teachers.html">All Teachers</a></li>
-                        <li><a href="add-teacher.html">Add Teacher</a></li>
-                        <li><a href="edit-teacher.html">Edit Teacher</a></li>
-                        <li><a href="about-teacher.html">About Teacher</a></li>
+                        <li><a href="all-teachers.html">All Trainers</a></li>
+                        <li><a href="{% url 'register_trainer' %}">Add Trainer</a></li>
                     </ul>
                 </li>
                 <li class="submenu">

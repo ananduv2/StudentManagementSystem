@@ -18,8 +18,9 @@ from django.urls import path
 from data.views import *
 
 urlpatterns = [
+    path('login/',LoggingInView.as_view(),name='login'),
     path('admin/', admin.site.urls),
-
+    path('register/trainer/',RegisterTrainerView.as_view(),name='register_trainer'),
 
     path('student_list/',TrainerView.as_view(),name='students'),
     path('student/<str:id>/',StudentEditView.as_view(),name='student_edit'),

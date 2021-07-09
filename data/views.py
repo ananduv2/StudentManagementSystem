@@ -6,10 +6,23 @@ from django.db.models import Q
 
 
 
+
 from .models import Student,Batch,TrainerTask,Trainer,StudentCourseData
-from .forms import StudentForm,CourseBatchForm,TaskForm
+from .forms import StudentForm,CourseBatchForm,TaskForm,TrainerRegistersForm
 
 # Create your views here.
+class LoggingInView(View):
+    def get(self,request):
+        form = TrainerRegistersForm()
+        return render(request,'data/login.html',{'form':form})
+
+    def post(self,request):
+        pass
+
+class RegisterTrainerView(View):
+    def get(self,request):
+        form = TrainerRegistersForm()
+        return render(request,'data/register.html',{'form':form})
 
 class TrainerView(View):
     
